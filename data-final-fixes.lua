@@ -1,3 +1,4 @@
+local pre_data = require('__pypostprocessing__/pre_mark')()
 require('__stdlib__/stdlib/data/data').Util.create_data_globals()
 
 local table = require('__stdlib__/stdlib/utils/table')
@@ -132,13 +133,24 @@ end
 -- THIRD PARTY COMPATIBILITY
 ----------------------------------------------------
 require('prototypes/functions/compatibility')
-
+require('__pypostprocessing__/post_mark')(pre_data)
 ----------------------------------------------------
 -- AUTO TECH script. Make sure it's the very last
 ----------------------------------------------------
 -- require('prototypes/functions/auto_tech')
 ----------------------------------------------------
 ----------------------------------------------------
+
+local base_protos = require "prototypes.base_protos"
+for k, v in pairs(data.raw) do
+    for kk, vv in pairs(v) do
+        if not vv.isPyPrototype and not (base_protos[k] and base_protos[k][kk]) then
+            vv.ignore_for_dependencies = true
+        end
+    end
+end
+
+
 log("AUTOTECH START")
 local at = require("prototypes.functions.auto_tech").create()
 at:run()
