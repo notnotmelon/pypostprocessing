@@ -35,6 +35,22 @@ local LABEL_UNLOCK_RECIPE = "__unlock_recipe__"
 local LABEL_TECH_FINISH = "__tech_finish__"
 
 
+--[[
+local base_protos = require "prototypes.base_protos"
+--forgive me father for I have sinned
+local _raw = data.raw
+local data = {
+    raw = {}
+}
+for k, v in pairs(_raw) do
+    if not data.raw[k] then data.raw[k] = {} end
+    for kk, vv in pairs(v) do
+        if vv.isPyPrototype or base_protos[k] and base_protos[k][kk] then
+            data.raw[k][kk] = vv
+        end
+    end
+end]]
+
 function data_parser.create()
     local d = {}
     setmetatable(d, data_parser)

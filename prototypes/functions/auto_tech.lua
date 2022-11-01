@@ -18,7 +18,6 @@ local LABEL_UNLOCK_RECIPE = "__unlock_recipe__"
 local function deadend_node(n, _, g) return not g:has_links_to(n) or not g:has_links_from(n) or false end
 local function ifd_deadend_node(n, _, g) return n.ignore_for_dependencies and deadend_node(n, _, g) end
 
-
 function auto_tech.create()
     local a = {}
     setmetatable(a, auto_tech)
