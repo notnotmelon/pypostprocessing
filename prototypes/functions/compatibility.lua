@@ -29,7 +29,7 @@ if mods['deadlock-beltboxes-loaders'] then
             data.raw.recipe['deadlock-stacks-unstack-' .. item_name].unlock_results = false
 
             if ITEM(item).burnt_result == 'ash' then
-                if not ITEM('deadlock-stack-ash') then error('\n\n\n\n\nPlease install Deadlock\'s Stacking for Pyanodon\n\n\n\n\n') end
+                if not data.raw.item['deadlock-stack-ash'] then error('\n\n\n\n\nPlease install Deadlock\'s Stacking for Pyanodon\n\n\n\n\n') end
                 stack.burnt_result = 'deadlock-stack-ash'
             end
 
